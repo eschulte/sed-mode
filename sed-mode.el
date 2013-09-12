@@ -50,7 +50,7 @@
                                  "/[^\n/]*/[IM]?,/[^\n/]*/[IM]?"
                                  "/[^\n/]*/[IM]?,\\$")
                            "\\|")
-          "\\)[ \t]\+")
+          "\\)[ \t]*")
   "Regexp to match range expressions in `sed-mode'.")
 
 (defconst sed-commands
@@ -91,16 +91,17 @@ See (info \"(sed)Escapes\").")
 (defconst sed-font-lock-keywords
   (eval-when-compile
     `(;; definitions
-      (,(concat "^\\(" sed-range-regexp "\\)?"
+      (,(concat "\\(^\\|;\\)\\(" sed-range-regexp "\\)?"
                 "\\(" (regexp-opt-charset sed-commands) "\\)")
-       (3 font-lock-builtin-face))
+       (4 font-lock-builtin-face))
       ;; control structures
-      (,(concat "^\\(" (regexp-opt-charset sed-prog-commands) "\\)")
-       (1 font-lock-builtin-face))
-      (,(concat "^\\(" (regexp-opt-charset sed-prog-commands) "\\)"
+      (,(concat "\\(^\\|;\\)"
+                "\\(" sed-range-regexp "\\)?"
+                "\\(" (regexp-opt-charset sed-prog-commands) "\\)"
                 "[ \t]\+"
                 "\\([^ \t\n\r]\+\\)")
-       (2 font-lock-function-name-face))
+       (4 font-lock-builtin-face)
+       (5 font-lock-function-name-face))
       ;; back references
       ("\\\\[0-9]" . font-lock-variable-name-face)
       ;; special escape sequences
