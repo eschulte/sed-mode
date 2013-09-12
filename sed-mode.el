@@ -95,8 +95,12 @@ See (info \"(sed)Escapes\").")
                 "\\(" (regexp-opt-charset sed-commands) "\\)")
        (3 font-lock-builtin-face))
       ;; control structures
-      (,(concat "^" (regexp-opt-charset sed-prog-commands))
-       . font-lock-builtin-face)
+      (,(concat "^\\(" (regexp-opt-charset sed-prog-commands) "\\)")
+       (1 font-lock-builtin-face))
+      (,(concat "^\\(" (regexp-opt-charset sed-prog-commands) "\\)"
+                "[ \t]\+"
+                "\\([^ \t\n\r]\+\\)")
+       (2 font-lock-function-name-face))
       ;; back references
       ("\\\\[0-9]" . font-lock-variable-name-face)
       ;; special escape sequences
