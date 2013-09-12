@@ -100,8 +100,10 @@ See (info \"(sed)Escapes\").")
       ;; back references
       ("\\\\[0-9]" . font-lock-variable-name-face)
       ;; special escape sequences
-      (,(concat "\\\\\\(" (mapconcat #'identity sed-escapes "\\|") "\\)")
-       . font-lock-string-face)
+      (,(concat "\\(^\\|[^\\\\]\\)\\(\\\\\\("
+                (mapconcat #'identity sed-escapes "\\|")
+                "\\)\\)")
+       (2 font-lock-string-face))
       ;; TODO: errors (malformed commands)
       ;; ("" 1 font-lock-warning-face)
       ))
