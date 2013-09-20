@@ -91,14 +91,14 @@ See (info \"(sed)Escapes\").")
 (defconst sed-font-lock-keywords
   (eval-when-compile
     `(;; definitions
-      (,(concat "\\(^\\|;\\)\\(" sed-range-regexp "\\)?"
+      (,(concat "\\(^\\|;\\|{\\)\\(" sed-range-regexp "\\)?"
                 "\\(" (regexp-opt-charset sed-commands) "\\)")
        (4 font-lock-builtin-face))
       ;; control structures
-      (,(concat "\\(^\\|;\\)"
+      (,(concat "\\(^\\|;\\|{\\)"
                 "\\(" sed-range-regexp "\\)?"
                 "\\(" (regexp-opt-charset sed-prog-commands) "\\)"
-                "[ \t]\+"
+                "[ \t]*"
                 "\\([^ \t\n\r]\+\\)")
        (4 font-lock-builtin-face)
        (5 font-lock-function-name-face))
