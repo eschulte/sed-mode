@@ -125,6 +125,7 @@ See (info \"(sed)Escapes\").")
     table)
   "Syntax table to use in `sed-mode'.")
 
+;;;###autoload
 (define-derived-mode sed-mode prog-mode "sed"
   "Major mode for editing sed code."
   :syntax-table sed-mode-syntax-table
@@ -141,6 +142,7 @@ See (info \"(sed)Escapes\").")
      (mode-name . "sed")
      (font-lock-defaults . (sed-font-lock-keywords)))))
 
+;;;###autoload
 (add-to-list 'auto-mode-alist '("\\.sed\\'" . sed-mode))
 
 (provide 'sed-mode)
