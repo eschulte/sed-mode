@@ -1,6 +1,6 @@
 ;;; sed-mode.el --- A major mode for editing sed source code
 
-;; Copyright (C) 2013 Eric Schulte
+;; Copyright (C) 2013-2014 Eric Schulte
 
 ;; Author: Eric Schulte <schulte.eric@gmail.com>
 ;; Version: 0.1
