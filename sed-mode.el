@@ -111,16 +111,14 @@ See (info \"(sed)Escapes\").")
        (2 font-lock-string-face))
       ;; TODO: errors (malformed commands)
       ;; ("" 1 font-lock-warning-face)
-      ))
+      ("^#.*$" . font-lock-comment-face)))
   "Default expressions to highlight in `sed-mode'.")
 
 (defvar sed-mode-syntax-table
   (let ((table (make-syntax-table)))
     (dolist (pair '((?\\ . "\\")        ; escape
                     ;; (?\/ . "\"")        ; string quotes
-                    (?\" . "w")         ; normal word character
-                    (?\# . "<")         ; open comment
-                    (?\n . ">")))       ; close comment
+                    (?\" . "w")))       ; normal word character
       (modify-syntax-entry (car pair) (cdr pair) table))
     table)
   "Syntax table to use in `sed-mode'.")
