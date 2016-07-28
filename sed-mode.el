@@ -91,12 +91,11 @@ See (info \"(sed)Escapes\").")
 (defconst sed-font-lock-keywords
   (eval-when-compile
     `(;; definitions
-      (,(concat "\\(^\\|;\\|{\\)\\(" sed-range-regexp "\\)?"
+      (,(concat "\\(^\\|;\\|{\\) *\\(" sed-range-regexp "\\)?"
                 "\\(" (regexp-opt-charset sed-commands) "\\)")
        (4 font-lock-builtin-face))
       ;; control structures
-      (,(concat "\\(^\\|;\\|{\\)"
-                "\\(" sed-range-regexp "\\)?"
+      (,(concat "\\(^\\|;\\|{\\) *\\(" sed-range-regexp "\\)?"
                 "\\(" (regexp-opt-charset sed-prog-commands) "\\)"
                 "[ \t]*"
                 "\\([^ \t\n\r]\+\\)")
@@ -111,7 +110,7 @@ See (info \"(sed)Escapes\").")
        (2 font-lock-string-face))
       ;; TODO: errors (malformed commands)
       ;; ("" 1 font-lock-warning-face)
-      ("^#.*$" . font-lock-comment-face)))
+      ("^ *#.*$" . font-lock-comment-face)))
   "Default expressions to highlight in `sed-mode'.")
 
 (defvar sed-mode-syntax-table
